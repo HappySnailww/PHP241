@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
-    <p>окак</p>
+    <?php 
+        $result = get_headers("https://httpbin.org/post");
+        echo "<textarea name='text' rows='5' cols='50'>";
+            print_r($result);
+        echo "</textarea>";
+    ?>
 </body>
 </html>

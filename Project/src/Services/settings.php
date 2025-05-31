@@ -2,7 +2,8 @@
 
     return [
         'host'=>'localhost',
-        'dbname'=>'project-321',
+        'dbname'=>'projectphp',
         'user'=>'root',
         'password'=>''
     ];
+?>

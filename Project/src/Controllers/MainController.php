@@ -15,14 +15,14 @@ class MainController{
             'article 1'=>[
                 'title'=>'Title 1',
                 'text'=>'Lorem ipsum',
-                'author'=>'olga',
-                'date'=>'09-09-1999'
+                'author'=>'masha',
+                'date'=>'01-09-2007'
             ],
             'article 2'=>[
                 'title'=>'Title 1',
                 'text'=>'Lorem ipsum',
-                'author'=>'olga',
-                'date'=>'09-09-1999'
+                'author'=>'masha',
+                'date'=>'01-09-2007'
             ]            
         ];
         $this->view->renderHtml('article/index', ['articles'=>$articles]);

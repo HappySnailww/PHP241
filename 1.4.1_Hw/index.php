@@ -1,8 +1,3 @@
-<?php
-
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,7 +31,7 @@
         <h1>Задание 4.1</h1>
     </header>
     <main>
-        <form id="contactForm" action="https://httpbin.org/post" method="POST" target="resultFrame">
+        <form action="index.php" method="POST">
             <label for="name">Имя пользователя:</label>
             <input type="text" id="name" name="name" required />
 
@@ -45,19 +40,19 @@
 
             <label>Тип обращения:</label>
             <select name="type" required>
-            <option value="жалоба">Жалоба</option>
-            <option value="предложение">Предложение</option>
-            <option value="благодарность">Благодарность</option>
+                <option value="жалоба">Жалоба</option>
+                <option value="предложение">Предложение</option>
+                <option value="благодарность">Благодарность</option>
             </select>
 
             <label for="message">Текст обращения:</label>
             <textarea id="message" name="message" rows="4" required></textarea>
 
             <label>Вариант ответа:</label>
-            <div class="checkbox-group">
-            <label><input value="sms" /> SMS</label>
-            <label><input name="response[]" value="email" /> E-mail</label>
-            </div>
+            <select name="type" required>
+                <option value="sms">sms</option>
+                <option value="email">email</option>
+            </select>
 
             <button type="submit">Отправить</button>
 

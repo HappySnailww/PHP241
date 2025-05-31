@@ -3,6 +3,8 @@
 namespace src\Controllers;
 use src\View\View;
 use src\Models\Articles\Article;
+use src\Models\Comments\Comment;
+use src\Services\Db;
 
 class ArticleController
 {
@@ -10,7 +12,8 @@ class ArticleController
     private $db;
     public function __construct()
     {
-        $this->view = new View;  
+        $this->view = new View;
+        $this->id = 1;
     }
 
     public function index(){
@@ -20,12 +23,13 @@ class ArticleController
 
     public function show($id){
         $article = Article::getById($id);
+        $comment = Comment::getByFildName('article_id', $article->getId());
             if ($article == []) 
         {
             $this->view->renderHtml('error/404', [], 404);
             return;
         }
-        $this->view->renderHtml('article/show', ['article'=>$article]);
+        $this->view->renderHtml('article/show', ['article'=>$article, 'comments'=>$comment]);
     }
 
     public function edit($id){
@@ -38,7 +42,7 @@ class ArticleController
         $article->title = $_POST['title'];
         $article->text = $_POST['text'];
         $article->save();
-        return header('Location:http://localhost/student-241/321/Project/www/article/'.$article->getId());
+        return header('Location:http://localhost/all%20php/Project/www/article/'.$article->getId());
     }
 
     public function create(){
@@ -51,12 +55,24 @@ class ArticleController
         $article->text = $_POST['text'];
         $article->authorId = 1;
         $article->save();
-        return header('Location:http://localhost/student-241/321/Project/www/index.php');
+        return header('Location:http://localhost/all%20php/Project/www/index.php');
     }
 
     public function delete(int $id){
         $article = Article::getById($id);
-        $article->delete();
-        return header('Location:http://localhost/student-241/321/Project/www/index.php');
+        $comments = Comment::getByFildName('article_id', $id);
+        foreach ($comments as $comment) {
+            $comment->delete($comment->getId());
+        }
+        $article->delete($id);
+        return header('Location:http://localhost/all%20php/Project/www/index.php');
+    }
+
+    public function setAuthorId(string $authorId) {
+        $this->authorId = $authorId;
+    }
+
+    public function setArticleId(string $articleId) {
+        $this->articleId = $articleId;
     }
 }

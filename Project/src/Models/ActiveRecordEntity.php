@@ -89,5 +89,11 @@ abstract class ActiveRecordEntity {
         $db->query($sql, [':id'=>$this->id], static::class);
     }
 
+    public static function getByFildName(string $fieldName, int $id): ?array{
+        $db = Db::getInstance();
+        $sql = 'SELECT * FROM`'.static::getTableName().'` WHERE `'.$fieldName.'`=:'.$fieldName;
+        return $db->query($sql, [':'.$fieldName=>$id], static::class);
+    }
+
     protected abstract static function getTableName();
 }

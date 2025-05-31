@@ -8,7 +8,8 @@ class Db{
     private $connect;
     private static $instance;
 
-    private function __construct() {
+    private function __construct()
+    {
         $dbOptions = require('settings.php');
         $this->connect = new \PDO('mysql:host='.$dbOptions['host'].';
                                    dbname='.$dbOptions['dbname'],
@@ -21,7 +22,8 @@ class Db{
         else return self::$instance;
     }
 
-    public function query($sql, $params = [], $className='stdClass'): ?array {
+    public function query($sql, $params = [], $className='stdClass'): ?array
+    {
         $sth = $this->connect->prepare($sql);
         $result = $sth->execute($params);
         if ($result == false) return null;
